@@ -1,9 +1,9 @@
 let tasks = [
-    {
-        id: 1,
-        design: 'Revision JS',
-        done: false
-    }
+    // {
+    //     id: 1,
+    //     design: 'Revision JS',
+    //     done: false
+    // }
 ];
 
 function renderTasks() {
@@ -23,12 +23,12 @@ renderTasks();
 function addTask() {
     const input = document.getElementById("inputNewTask");
     const title = input.value;
-
     const newTask = {
         id: Date.now(),
         design: title,
         done: false
     }
+    input.value="";
     tasks.push(newTask);
     renderTasks();
 };
