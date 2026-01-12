@@ -17,6 +17,17 @@ function renderTasks() {
     })
 }
 
+function saveTasks(){
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+}
+
+function loadTasks(){
+    const data = localStorage.getItem("tasks");
+    if (data) {
+        tasks = JSON.parse(data);
+    }
+}
+
 renderTasks();
 
 
