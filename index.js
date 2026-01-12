@@ -29,11 +29,7 @@ function addTask() {
         design: title,
         done: false
     }
-
     tasks.push(newTask);
-
-    console.log('tasks', tasks);
-
     renderTasks();
 };
 
