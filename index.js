@@ -29,14 +29,23 @@ function renderTasks() {
         li.textContent = t.design   ;
         li.dataset.id = t.id;
         
+        li.addEventListener("click",() =>{
+            toggleTask(t.id);
+        });
+
         if(t.done){
             li.style.textDecoration = "line-through";
         }
 
-        li.addEventListener("click",() =>{
-            toggleTask(t.id);
-        });
+        const btnDelete = document.createElement("button");
+        btnDelete.textContent = "Supprimer";
+
+        btnDelete.addEventListener("click", (event) =>{
+            event.stopPropagation();
+            deleteTask(t.id);
+        })    
         
+        li.appendChild(btnDelete);
         list.appendChild(li);       
     })
 }
@@ -65,4 +74,11 @@ function addTask() {
 document
     .getElementById("btnAddNewTask")
     .addEventListener("click",addTask);
+
+function deleteTask(id){
+    tasks = tasks.filter(t => t.id != id);
+
+    saveTasks();
+    renderTasks();
+}
 
