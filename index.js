@@ -1,10 +1,13 @@
-let tasks = [
-    // {
-    //     id: 1,
-    //     design: 'Revision JS',
-    //     done: false
-    // }
-];
+let tasks = [];
+
+function loadTasks(){ //from localstorage
+    const data = localStorage.getItem("tasks");
+    if (data) {
+        tasks = JSON.parse(data);
+    }
+}
+
+loadTasks();
 
 function renderTasks() {
     const list = document.getElementById("taskList");
@@ -21,15 +24,7 @@ function saveTasks(){
     localStorage.setItem("tasks",JSON.stringify(tasks));
 }
 
-function loadTasks(){
-    const data = localStorage.getItem("tasks");
-    if (data) {
-        tasks = JSON.parse(data);
-    }
-}
-
 renderTasks();
-
 
 function addTask() {
     const input = document.getElementById("inputNewTask");
@@ -41,6 +36,7 @@ function addTask() {
     }
     input.value="";
     tasks.push(newTask);
+    saveTasks();
     renderTasks();
 };
 
